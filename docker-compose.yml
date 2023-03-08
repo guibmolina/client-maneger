@@ -1,0 +1,55 @@
+version: "3.7"
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: client-maneger-nginx
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./apps/:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d
+    networks:
+      - clientManeger
+
+  client-maneger-api-app:
+    build:
+      args:
+        user: guilherme
+        uid: 1000
+      context: ./apps/client-maneger-api
+      dockerfile: Dockerfile
+    image: client-maneger-api
+    container_name: client-maneger-api-app
+    restart: unless-stopped
+    working_dir: /var/www/client-maneger-api
+    volumes:
+      - ./apps/client-maneger-api:/var/www/client-maneger-api
+    environment:
+      - "DB_PORT=3306"
+      - "DB_HOST=client-maneger-db"
+      - "DB_DATABASE=clientManeger"
+      - "DB_USERNAME=root"
+      - "DB_PASSWORD=root"
+    depends_on:
+      - db
+    networks: 
+      - clientManeger
+
+  db:
+    image: mariadb
+    container_name: client-maneger-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+
+    networks:
+      - clientManeger
+
+networks:
+  clientManeger:
+    driver: bridge
