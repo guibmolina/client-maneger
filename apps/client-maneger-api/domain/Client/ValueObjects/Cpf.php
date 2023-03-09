@@ -38,9 +38,4 @@ class Cpf
         }
         $this->cpf = $cpf;
     }
-
-    public function __toString(): string
-    {
-        return $this->cpf;
-    }
 }
