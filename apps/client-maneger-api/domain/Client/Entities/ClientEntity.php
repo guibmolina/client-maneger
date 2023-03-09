@@ -28,7 +28,7 @@ class ClientEntity
 
         $this->cpf = $cpf;
 
-        $this->$birthDate = $birthDate;
+        $this->birthDate = $birthDate;
 
         $this->phone = $phone;
     }
@@ -36,5 +36,15 @@ class ClientEntity
     public function birthDateFomated(): string
     {
         return $this->birthDate->format('Y-m-d');
+    }
+
+    public function cpf(): string
+    {
+        return $this->cpf->cpf; 
+    }
+
+    public function phone(): ?string
+    {
+        return $this->phone->phone;
     }
 }

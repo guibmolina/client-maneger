@@ -22,9 +22,9 @@ class Response
             $response[] = [
                 'id' => $client->id,
                 'name' => $client->name,
-                'cpf' => $client->cpf,
+                'cpf' => $client->cpf(),
                 'birth_date' => $client->birthDateFomated(),
-                'phone' => $client->phone,
+                'phone' => $client->phone(),
             ];
         }
 

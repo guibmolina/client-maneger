@@ -6,6 +6,7 @@ namespace Domain\Client\UseCases\CreateClient;
 
 use DateTimeImmutable;
 use Domain\Client\Entities\ClientEntity;
+use Domain\Client\Exceptions\ClientAlreadyExistException;
 use Domain\Client\Repositories\ClientRepository;
 use Domain\Client\ValueObjects\Cpf;
 use Domain\Client\ValueObjects\Phone;
@@ -21,6 +22,10 @@ class CreateClient
 
     public function execute(DTO $DTO): Response
     {
+        if (!empty($this->repository->findClientBy($DTO->cpf, null)->clients())) {
+            throw new ClientAlreadyExistException();
+        }
+
         $client = new ClientEntity(
             null,
             $DTO->name,
@@ -31,6 +36,6 @@ class CreateClient
 
         $clientSaved = $this->repository->store($client);
 
-        return new Response($client);
+        return new Response($clientSaved);
     }
 }

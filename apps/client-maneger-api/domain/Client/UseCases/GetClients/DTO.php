@@ -10,9 +10,9 @@ class DTO
 
     public ?string $name;
 
-    public function __construct(?array $cpf = null, ?int $name   = null)
+    public function __construct(?string $cpf = null, ?string $name = null)
     {
-        $this->cpf = $cpf ?? [];
+        $this->cpf = $cpf;
 
         $this->name = $name;
     }

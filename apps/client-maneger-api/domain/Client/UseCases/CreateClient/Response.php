@@ -19,10 +19,11 @@ class Response
     public function response(): array
     {
         return [
+            'id' => $this->entity->id,
             'name' => $this->entity->name,
-            'cpf' => $this->entity->cpf,
+            'cpf' => $this->entity->cpf(),
             'birth_date' => $this->entity->birthDateFomated(),
-            'phone' => $this->entity->phone,
+            'phone' => $this->entity->phone(),
         ];
     }
 }

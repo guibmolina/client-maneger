@@ -11,7 +11,7 @@ interface ClientRepository
 {
     public function store(ClientEntity $entity): ClientEntity;
 
-    public function findClientById(int $id): ClientEntity;
+    public function findClientById(int $id): ?ClientEntity;
 
     public function findClientBy(?string $cpf, ?string $name): ClientList;
 
