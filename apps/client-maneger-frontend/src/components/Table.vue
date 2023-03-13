@@ -252,7 +252,7 @@ export default {
             phone => {
                 if (!phone) return true;
 
-                if (phone.match(/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/)) {
+                if (phone.match(/^\s*(\d{2}|\d{0})[-. ]?(\d{5}|\d{4})[-. ]?(\d{4})[-. ]?\s*$/)) {
                     return true;
                 }
 
