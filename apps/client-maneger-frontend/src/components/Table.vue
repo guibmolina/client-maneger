@@ -19,7 +19,6 @@
                       <v-col cols="2">
                         <v-card color="#9C27B0">
                             <v-btn block color="#FFFF" v-bind="props">Novo cliente</v-btn>
-                          
                         </v-card>
                       </v-col>
                       <v-col cols="7">
@@ -375,7 +374,7 @@ export default {
                         console.log(res.data);
                         this.clients = res.data;
                     })
-            }, 1000);
+            }, 400);
         },
         onSearchCPF(event) {
             clearTimeout(this.debounce);
@@ -389,7 +388,7 @@ export default {
                         this.clients = res.data;
                     })
 
-            }, 1000);
+            }, 400);
         },
     },
 }
