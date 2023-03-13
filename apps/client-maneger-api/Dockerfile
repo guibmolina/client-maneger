@@ -4,6 +4,12 @@ FROM php:fpm
 ARG user
 ARG uid
 
+# Copy composer.lock and composer.json into the working directory
+COPY composer.lock composer.json /var/www/html/
+
+# Set working directory
+WORKDIR /var/www/html/
+
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
@@ -20,15 +26,16 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # Install PHP extensions
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
-# Get latest Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Install composer (php package manager)
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+COPY . /var/www/html
 
 # Create system user to run Composer and Artisan Commands
 RUN useradd -G www-data,root -u $uid -d /home/$user $user
 RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
 
-# Set working directory
-WORKDIR /var/www/client-maneger-api
-
+EXPOSE 9000
 USER $user
+
