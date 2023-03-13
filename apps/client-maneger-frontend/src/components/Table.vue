@@ -1,6 +1,6 @@
 <template>
    <v-container class="fill-height">
-    <v-responsive class="d-flex align-center text-center fill-height">
+    <v-responsive class="d-flex align-center  fill-height">
       <v-card class="mx-auto" color="grey-lighten-3">
         <v-card-text>
           <v-data-table
@@ -182,7 +182,7 @@ export default {
         headers: [{
                 title: 'Nome',
                 key: 'name',
-                sortable: false
+                sortable: false,
             },
             {
                 title: 'CPF',
