@@ -2,7 +2,7 @@
 ## Client Maneger - Gerenciador de Clientes
 ### URL do projeto : http://3.145.68.118/
 ##
-## Configuração do ambiente local:
+## Testar no ambiente local:
 
 Faça o clone do repositório na sua máquina
 
