@@ -1,6 +1,5 @@
 ##
 ## Client Maneger - Gerenciador de Clientes
-### URL do projeto : http://3.145.68.118/
 ##
 ## Testar no ambiente local:
 
